@@ -8,7 +8,7 @@
   <!-- Tailwind CSS for styling (optional) -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Correct Ethers.js UMD CDN -->
+  <!-- Ethers.js UMD Build -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
   
   <!-- Custom CSS -->
@@ -16,21 +16,44 @@
 </head>
 <body>
   <div class="container mx-auto mt-20 text-center">
-    <h1 class="text-4xl font-bold mb-8">Donation Test</h1>
+    <h1 class="text-4xl font-bold mb-8">Support Our Site</h1>
     
-   
-    
-    <!-- "Support the Site" Button -->
+    <!-- "Connect" Button -->
     <button
-      id="supportSite"
-      class="neon-button py-2 px-6 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition duration-300 ml-4"
-      onclick="supportSite()"
+      id="connectButton"
+      class="neon-button py-2 px-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
+      onclick="connectAndDonate()"
     >
-      Connect Wallet
+      Connect
+    </button>
+    
+    <!-- Memo about donation -->
+    <p id="memo" class="mt-6 text-gray-300 max-w-lg mx-auto">
+      Donate to support the site by clicking the "Connect" button. MetaMask will prompt you to confirm the transaction. You can specify the amount before confirming.
+    </p>
+    
+    <!-- Status Message -->
+    <p id="statusMessage" class="mt-6 text-gray-300"></p>
+  </div>
+  
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
+
+    >
+      Support the Site
     </button>
     
     <!-- Status Message -->
     <p id="statusMessage" class="mt-6 text-gray-300"></p>
+  </div>
+  
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
+
   </div>
   
   <!-- Custom JavaScript -->
