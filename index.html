@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation Test</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Correct Ethers.js UMD CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Donation Test</title>
+  
+  <!-- Tailwind CSS for styling (optional) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Correct Ethers.js UMD CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Donation Test</h1>
-        <button id="connectWallet">Connect Wallet</button>
-        <div id="donation" class="hidden">
-            <p>Preparing your donation of <strong>0.1 ETH</strong> to <strong>0x030CdE70309bacB42f72df1E769440b342EF3696</strong>...</p>
-            <p id="statusMessage"></p>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <div class="container mx-auto mt-20 text-center">
+    <h1 class="text-4xl font-bold mb-8">Donation Test</h1>
+    
+    <!-- "Connect Wallet" Button -->
+    <button
+      id="connectWallet"
+      class="neon-button py-2 px-6 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
+      onclick="connectWallet()"
+    >
+      Connect Wallet
+    </button>
+    
+    <!-- "Support the Site" Button -->
+    <button
+      id="supportSite"
+      class="neon-button py-2 px-6 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition duration-300 ml-4"
+      onclick="supportSite()"
+    >
+      Support the Site
+    </button>
+    
+    <!-- Status Message -->
+    <p id="statusMessage" class="mt-6 text-gray-300"></p>
+  </div>
+  
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
