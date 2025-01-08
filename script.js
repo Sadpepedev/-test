@@ -21,9 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const txParams = {
           from: account,
           to: "0x62f1F6bFE3A798d5023608ac0a9c8a9538276283", // Replace with your desired donation address
-          value: "0x0" // 0 ETH by default; users can change this in MetaMask
-          // To set a predefined amount (e.g., 0.01 ETH), use the following line instead:
-          // value: "0x2386F26FC10000" // 0.01 ETH in hexadecimal
+          value: "0x2386F26FC10000" // 0.01 ETH in hexadecimal (predefined amount)
         };
         
         // Send the transaction
@@ -50,5 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Attach function to button click
-  connectButton.onclick = connectAndDonate;
+  window.connectAndDonate = connectAndDonate;
 });
