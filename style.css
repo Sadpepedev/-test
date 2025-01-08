@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * @returns {boolean}
      */
     function isMetaMaskInstalled() {
-        return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+        const installed = typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+        console.log(`MetaMask installed: ${installed}`);
+        return installed;
     }
 
     /**
@@ -29,7 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Request account access
+            console.log('Requesting account access...');
             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            if (!accounts || accounts.length === 0) {
+                throw new Error('No accounts found.');
+            }
             const account = accounts[0];
             console.log('Connected account:', account);
 
@@ -67,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Update status message
             statusMessage.textContent = 'Awaiting your transaction confirmation in MetaMask...';
+            console.log('Initiating transaction:', tx);
 
             // Send the transaction
             const transaction = await signer.sendTransaction(tx);
@@ -74,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             statusMessage.textContent = 'Transaction sent. Waiting for confirmation...';
 
             // Wait for the transaction to be mined
+            console.log('Waiting for transaction to be mined...');
             await transaction.wait();
             alert('Donation successful! Thank you for your support.');
             console.log('Transaction mined.');
