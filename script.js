@@ -23,7 +23,7 @@ h1 {
 
 button {
     padding: 10px 20px;
-    background-color: #28a745; /* Changed color for better visibility */
+    background-color: #28a745; /* Green color for better visibility */
     color: #fff;
     border: none;
     border-radius: 5px;
