@@ -1,101 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Get DOM elements
-    const connectWalletButton = document.getElementById('connectWallet');
-    const donationSection = document.getElementById('donation');
-    const statusMessage = document.getElementById('statusMessage');
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
 
-    // Donation details
-    const donationAddress = '0x030CdE70309bacB42f72df1E769440b342EF3696';
-    const donationAmount = '0.1'; // Amount in ETH
+.neon-button {
+  border: 2px solid #18FFF7;
+  transition: all 0.3s ease;
+}
 
-    /**
-     * Check if MetaMask is installed
-     * @returns {boolean}
-     */
-    function isMetaMaskInstalled() {
-        const installed = typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
-        console.log(`MetaMask installed: ${installed}`);
-        return installed;
-    }
-
-    /**
-     * Connect to MetaMask wallet and initiate donation
-     */
-    async function connectAndDonate() {
-        console.log('Connect Wallet button clicked.');
-        if (!isMetaMaskInstalled()) {
-            alert('MetaMask is not installed. Please install it to use this feature.');
-            console.warn('MetaMask is not installed.');
-            return;
-        }
-
-        try {
-            // Request account access
-            console.log('Requesting account access...');
-            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            if (!accounts || accounts.length === 0) {
-                throw new Error('No accounts found.');
-            }
-            const account = accounts[0];
-            console.log('Connected account:', account);
-
-            // Hide the connect button and show the donation section
-            connectWalletButton.style.display = 'none';
-            donationSection.classList.remove('hidden');
-            console.log('Donation section is now visible.');
-
-            // Initiate the donation transaction
-            await initiateDonation();
-        } catch (error) {
-            console.error('Error connecting to MetaMask:', error);
-            alert('Failed to connect wallet. Please try again.');
-        }
-    }
-
-    /**
-     * Initiate the donation transaction
-     */
-    async function initiateDonation() {
-        if (!isMetaMaskInstalled()) {
-            alert('MetaMask is not installed.');
-            console.warn('MetaMask is not installed.');
-            return;
-        }
-
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-
-        const tx = {
-            to: donationAddress,
-            value: ethers.utils.parseEther(donationAmount)
-        };
-
-        try {
-            // Update status message
-            statusMessage.textContent = 'Awaiting your transaction confirmation in MetaMask...';
-            console.log('Initiating transaction:', tx);
-
-            // Send the transaction
-            const transaction = await signer.sendTransaction(tx);
-            console.log('Transaction sent:', transaction);
-            statusMessage.textContent = 'Transaction sent. Waiting for confirmation...';
-
-            // Wait for the transaction to be mined
-            console.log('Waiting for transaction to be mined...');
-            await transaction.wait();
-            alert('Donation successful! Thank you for your support.');
-            console.log('Transaction mined.');
-            statusMessage.textContent = 'Donation successful! Thank you for your support.';
-        } catch (error) {
-            console.error('Error sending transaction:', error);
-            alert('Donation failed. Please try again.');
-            statusMessage.textContent = 'Donation failed. Please try again.';
-        }
-    }
-
-    // Event listener
-    connectWalletButton.addEventListener('click', connectAndDonate);
-
-    // Initial log to confirm script is loaded
-    console.log('Script.js loaded successfully.');
-});
+.neon-button:hover {
+  box-shadow: 0 0 10px #18FFF7, 0 0 20px #18FFF7;
+}
